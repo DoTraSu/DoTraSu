@@ -1,50 +1,64 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# DoTraSu Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. CLI-First Architecture
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+DoTraSu is a CLI application first; a future frontend is optional.
+Every feature must work through the command line.
+All core logic must be importable as a library for future reuse.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### II. Input Validation
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Validate early, reject loudly, and provide clear error messages.
+Input validation is non-negotiable and applies to every entry point.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### III. Security
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Secrets must never be committed to version control.
+Never hardcode API keys, passwords, tokens, or credentials.
+Use environment variables or a secrets manager for sensitive data.
+Add secrets to .gitignore and document the required variables in README.
+Audit dependencies for known vulnerabilities before adding new ones.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### IV. Code Quality
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Keep it simple. Use simple architectures with no unnecessary abstractions.
+Prefer readable, straightforward code over clever one-liners.
+Each module should do one thing well and expose a clear interface.
+Complex logic must have explanatory comments describing the rationale.
+ASD-STE100 (Simplified Technical English) governs all written text:
+short sentences, active voice, one meaning per sentence, no jargon.
+Code comments, documentation, and user-facing messages follow ASD-STE100.
+The application must be easily extensible, closed for modification.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Platform Independence
+
+The application must run on all major operating systems (Windows, macOS, Linux).
+Use only platform-independent libraries and standard library features.
+Avoid OS-specific path separators, line endings, or shell commands.
+Where platform-specific behavior is unavoidable, abstract it behind a
+clear interface with platform-specific implementations.
+
+## Documentation
+
+README must be kept up to date with accurate setup and usage instructions.
+The README must include: what the app does, installation steps,
+configuration requirements, and basic usage examples.
+Update the README with every change that affects setup, configuration,
+or user-facing behavior.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices in this project.
+Amendments require a clear rationale and must be recorded in this file.
+Versioning follows semantic versioning (MAJOR.MINOR.PATCH):
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- MAJOR: principle removal or backward-incompatible redefinition.
+- MINOR: new principle or section added, or materially expanded guidance.
+- PATCH: wording clarifications, typo fixes, non-semantic refinements.
+
+All changes to this constitution are tracked via git commits with
+descriptive messages referencing the constitution version.
+
+**Version**: 1.0.0 | **Ratified**: 2026-09-27 | **Last Amended**: 2026-09-27
